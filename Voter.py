@@ -1,7 +1,6 @@
 import random
 import math
 import sys
-from Crypto.Hash import SHA256
 
 class voter:
 	'Class for voter object'
@@ -27,44 +26,41 @@ class voter:
 		input3 = ("0 - syrup, 1 - jam")
 		while(input3 != 0 AND input3 =! 1):
 			input3 = ("Invalid input; 0 - syrup, 1 - jam")
-		return encrypt(input1, input2, input3)
+		return [encrypt(input1), encrypt(input2), encrypt(input3)]
 	
-	def encrypt(p1, p2, p3):
-		'Encrypt ballot answers'
+	def encrypt(pltxt):
+		'Encrypt ballot answer'
 		
 		#get n from public key
 		n = self.pubKey[0]
-		
 		#get g from public key
 		g = self.pubKey[1]
+		#max iterations
+		k = 10,000
 		
+		r = verifyGCD(n, k)
+		ctext = g**m * r**n % n**2
+		
+		return ctext
+		
+	def verifyGCD(n, k):
 		#generate pseudo random r
 		r = random.(1, n)
 		
-		#hash votes
-		m1 = 
-		m2 =
-		m3 =
-		
 		#verify gcd(r, n) = 1
 		count = 0
-		k = 10,000
 		while(count <= k):
 			if(math.gcd(r, n) == 1):
 				print("gcd(r, n) = 1 verified")
-				break
+				return r
 			#try new number
 			r = random.(1, n)
 			#update counter
 			count = count + 1
-		# new r?
-		c1 = g**m * r**n % n**2
-		c2 = 
-		c3 = 
-		
-		return[c1, c2, c3]
-		
-		
+			
+		#if not verified, notify user and return random number in the interest of time
+		print("gcd(r, n) = 1 not verified")
+		return r
 
 	def genPrime(n, k):
 		'Generate a prime number'
@@ -161,5 +157,5 @@ class voter:
 		'method to calculate modular multiplicative inverse'
 		mu = (n/((g**mlambda % n**2) - 1)) % n
 		return mu
-
+		
 		
