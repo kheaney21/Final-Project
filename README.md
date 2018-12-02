@@ -19,4 +19,5 @@ Driver class:
 References
 - http://www.cs.tau.ac.il/~fiat/crypt07/papers/Pai99pai.pdf
 - https://eprint.iacr.org/2014/202.pdf
+- https://python-paillier.readthedocs.io/en/develop/phe.html#module-phe.paillier
 
