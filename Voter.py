@@ -1,30 +1,28 @@
 import random
-import math
 import sys
+import math
 
 class voter:
 	'Class for voter object'
 	
 	def __init__(self):
-		keyPair = genKeys()
+		keyPair = self.genKeys()
 		#n, g
 		self.pubKey = (keyPair[0], keyPair[1])
 		#lambda, mu
 		self.privKey = (keyPair[3], keyPair[4])
-		
-	def getPubKey(self):
-		return pubKey	
+		print("check 1")	
 	
 	def vote():
 		'Collects votes from user input'
 		input1 = ("0 - citrus, 1 - berries")
-		while(input1 != 0 AND input1 =! 1):
+		while(input1 != 0 and input1 != 1):
 			input1 = ("Invalid input; 0 - citrus, 1 - berries")
 		input2 = ("0 - pancakes, 1 - waffles")
-		while(input2 != 0 AND input2 =! 1):
+		while(input2 != 0 and input2 != 1):
 			input2 = ("Invalid input; 0 - pancakes, 1 - waffles")
 		input3 = ("0 - syrup, 1 - jam")
-		while(input3 != 0 AND input3 =! 1):
+		while(input3 != 0 and input3 != 1):
 			input3 = ("Invalid input; 0 - syrup, 1 - jam")
 		return [encrypt(input1), encrypt(input2), encrypt(input3)]
 	
@@ -36,7 +34,7 @@ class voter:
 		#get g from public key
 		g = self.pubKey[1]
 		#max iterations
-		k = 10,000
+		k = 10000
 		
 		r = verifyGCD(n, k)
 		ctext = g**m * r**n % n**2
@@ -45,16 +43,16 @@ class voter:
 		
 	def verifyGCD(n, k):
 		#generate pseudo random r
-		r = random.(1, n)
+		r = random(1, n)
 		
 		#verify gcd(r, n) = 1
 		count = 0
 		while(count <= k):
-			if(math.gcd(r, n) == 1):
+			if(self.gcd(r, n) == 1):
 				print("gcd(r, n) = 1 verified")
 				return r
 			#try new number
-			r = random.(1, n)
+			r = random(1, n)
 			#update counter
 			count = count + 1
 			
@@ -62,24 +60,27 @@ class voter:
 		print("gcd(r, n) = 1 not verified")
 		return r
 
-	def genPrime(n, k):
+	def genPrime(self, n, k):
 		'Generate a prime number'
 
 		x = random.randrange(51, n, 2)
 		count = 0
 		print("k " + str(k))
-		while (not isPrime(x, k) and count < k):
+		while (not self.isPrime(x, k) and count < k):
 			x = random.randrange(51, n, 2)
 			count = count + 1
-			#print(str(count) + " x " + str(x))
+			if (count % 10 == 0):
+				print(str(count) + " x " + str(x))
 		print("final x " + str(x))
 		print("count " + str(count))
 		return x
 		
-	def verifyPrimes(p, q):
+	def verifyPrimes(self, p, q):
 		'Check if p & q are prime via greatest common denominator'
 		count = 0
-		if(math.gcd(p*q, (p-1)(q-1)) == 1):
+		n1 = p*q
+		n2 = (p-1)*(q-1)
+		if(self.gcd(n1, n2) == 1):
 			print("gcd test = true")
 			return True
 		else:
@@ -87,7 +88,7 @@ class voter:
 			return False
 			
 	#check if prime via miller-rabin test
-	def isPrime(n, k):
+	def isPrime(self, n, k):
 		'Check if prime via Miller-Rabin test'
 			
 		#calculate d
@@ -118,18 +119,19 @@ class voter:
 			return False
 		return True
 	
-	def genKeys():
+	def genKeys(self):
 		#max number for prime generation
-		max = 100,000
+		max = 100000
 		#max number of iterations
-		k = 10,000
-		p = genPrime(max, k)
-		q = genPrime(max, k)
+		k = 100
+		p = self.genPrime(max, k)
+		q = self.genPrime(max, k)
 		
-		cont = True
+		# ** update to True
+		cont = False
 		count = 0
-		while (cont = True AND count < k):
-			if (verifyPrimes(p, q) == True):
+		while (cont == True and count < k):
+			if (self.verifyPrimes(p, q) == True):
 				print("keys generated")
 				cont = False
 			#update counter
@@ -158,4 +160,12 @@ class voter:
 		mu = (n/((g**mlambda % n**2) - 1)) % n
 		return mu
 		
+	def gcd(self, n1, n2):
+		gcd = 1
+		
+		for i in range(int(n2/2), 0, -1):
+			if (n1 % i == 0 and n2 % i == 0):
+				gcd = i
+				break
+		return gcd
 		
