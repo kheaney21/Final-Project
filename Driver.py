@@ -56,6 +56,7 @@ class election:
 			total2 = total2 * b2[i]
 		
 		#citrus vs berries
+		total0 = electorate[0].decrypt(total0)
 		if (total0 > len(b0)):
 			print("berries has the most votes")
 		elif(total0 < len(b0)):
@@ -65,18 +66,20 @@ class election:
 		print("results: citrus " + string(len(b0) - total0) + " berries " + string(total0))
 		
 		#pancakes vs waffles
-		if (total0 > len(b0)):
+		total1 = electorate[0].decrypt(total1)
+		if (total1 > len(b1)):
 			print("waffles has the most votes")
-		elif(total0 < len(b0)):
+		elif(total1 < len(b1)):
 			print("pancakes has the most votes")
 		else: #tie
 			print("tie")
 		print("results: pancakes " + string(len(b1) - total1) + " waffles " + string(total0))
 		
 		#syrup vs jam
-		if (total0 > len(b0)):
+		total2 = electorate[0].decrypt(total2)
+		if (total2 > len(b2)):
 			print("jam has the most votes")
-		elif(total0 < len(b0)):
+		elif(total2 < len(b2)):
 			print("syrup has the most votes")
 		else: #tie
 			print("tie")
