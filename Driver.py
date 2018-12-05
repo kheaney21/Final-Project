@@ -45,15 +45,15 @@ class election:
 		#b1 is false if empty
 		if(not b1):
 			print("no votes cast")
-		total0 = 0
+		total0 = 1
 		for i in b0:
-			total0 = total0 + b0[i]
-		total1 = 0
+			total0 = total0 * b0[i]
+		total1 = 1
 		for i in b1:
-			total1 = total1 + b1[i]
-		total2 = 0
+			total1 = total1 * b1[i]
+		total2 = 1
 		for i in b2:
-			total2 = total2 + b2[i]
+			total2 = total2 * b2[i]
 		
 		#citrus vs berries
 		if (total0 > len(b0)):
