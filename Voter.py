@@ -52,6 +52,7 @@ class voter:
 		return pltext
 		
 	def verifyGCD(n, k):
+		'verify the GCD of n and a random number'
 		#generate pseudo random r
 		r = random(1, n)
 		
