@@ -1,5 +1,8 @@
 # Final-Project
-Simple voting program using homomorphic encryption
+Simple voting program using Paillier homomorphic encryption
+
+With homomorphic encryption, ciphertexts can be added to one another or multiplied by a constant and decrypted as the sum or product. This is useful for voting purposes since individual votes don't need to be decrypted to be counted.
+
 
 Voter class:
   vote(): collects user input for 3 binary choices
