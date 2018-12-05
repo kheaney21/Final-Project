@@ -10,8 +10,7 @@ class voter:
 		#n, g
 		self.pubKey = (keyPair[0], keyPair[1])
 		#lambda, mu
-		self.privKey = (keyPair[3], keyPair[4])
-		print("check 1")	
+		self.privKey = (keyPair[3], keyPair[4])	
 	
 	def vote():
 		'Collects votes from user input'
@@ -40,6 +39,17 @@ class voter:
 		ctext = g**m * r**n % n**2
 		
 		return ctext
+	
+	def decrypt(ctext):
+		'Decrypt ciphertext'
+		#get n from public key
+		n = self.pubKey[0]
+		#get lambda from private key
+		mlambda = self.privKey[3]
+		#get mu from private key
+		mlambda = self.privKey[4]
+		pltext = ((ctext**mlambda % n**2) - 1)/n * mu % n
+		return pltext
 		
 	def verifyGCD(n, k):
 		#generate pseudo random r
